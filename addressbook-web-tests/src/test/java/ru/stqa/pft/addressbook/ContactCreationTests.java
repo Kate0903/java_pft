@@ -8,8 +8,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class ContactCreationTests {
   private WebDriver wd;
 
-  private boolean acceptNextAlert = true;
-  private StringBuffer verificationErrors = new StringBuffer();
 
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
