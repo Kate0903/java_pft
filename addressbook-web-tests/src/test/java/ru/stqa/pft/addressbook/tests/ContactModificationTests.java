@@ -14,10 +14,10 @@ public class ContactModificationTests extends TestBase{
         app.getGroupHelper().createGroup(new GroupData("test1", "test2", "test3"));
       }
       app.getNavigationHelper().gotoAddContactPage();
-      app.getContactHelper().createContact(new ContactData("kate", "kap", "89562", "Tokorevskaya","ghj@mail.ru","test1"));
+      app.getContactHelper().createContact(new ContactData("kate", "kap", "89562", "Tokorevskaya","ghj@mail.ru"));
     }
     app.getContactHelper().editSelectedContact();
-    app.getContactHelper().fillContactForm(new ContactData("kate", "kap", "89562", "Tokorevskaya","ghj@mail.ru",null), false);
+    app.getContactHelper().fillContactForm(new ContactData("kate", "kap", "89562", "Tokorevskaya","ghj@mail.ru"), false);
     app.getContactHelper().submitContactModification();
     app.getContactHelper().returnHomePage();
 
