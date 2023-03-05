@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import org.openqa.selenium.support.ui.Select;
@@ -84,5 +85,11 @@ public class ContactHelper extends HelperBase{
     }
 
     return contacts;
+  }
+
+  public void closeDeleteAlert() {
+    closeAlert();
+    WebDriverWait wait = new WebDriverWait(wd, 10);
+    wait.until(webDriver -> webDriver.getCurrentUrl().contains("/addressbook/delete.php"));
   }
 }

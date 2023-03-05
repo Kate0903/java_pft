@@ -25,7 +25,7 @@ public class NavigationHelper extends HelperBase {
   }
 
   public void gotoHomePage() {
-    if (isElementPresent(By.id("maintable"))){
+    if (wd.getCurrentUrl().endsWith("/addressbook/") || wd.getCurrentUrl().endsWith("/addressbook/index.php")){
       return;
     }
     click(By.linkText("home"));
