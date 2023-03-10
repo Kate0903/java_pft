@@ -10,8 +10,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ContactDeletionTests extends TestBase{
-  @Test
-  public void testContactDeletion() throws InterruptedException {
+  public void ensurePreconditions(){
     app.getNavigationHelper().gotoHomePage();
     if (!app.getContactHelper().isThereAContact()){
       app.getNavigationHelper().gotoGroupPage();
@@ -22,6 +21,9 @@ public class ContactDeletionTests extends TestBase{
       app.getContactHelper().createContact(new ContactData("kate", "kap", "89562", "Tokorevskaya","ghj@mail.ru"));
     }
     app.getNavigationHelper().gotoHomePage();
+  }
+  @Test
+  public void testContactDeletion() throws InterruptedException {
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().selectContact(before.size() - 1);
     app.getContactHelper().deleteSelectedContacts();
