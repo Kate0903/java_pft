@@ -1,29 +1,24 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class ContactCreationTests extends TestBase {
 
 
   @Test
   public void testContactCreation() throws Exception {
-    app.getNavigationHelper().gotoHomePage();
-    List<ContactData> before = app.getContactHelper().getContactList();
-    app.getNavigationHelper().gotoAddContactPage();
+    app.goTo().homePage();
+    List<ContactData> before = app.contact().list();
+    app.goTo().addContactPage();
     ContactData contact = new ContactData("kate", "kap", "89562", "Tokorevskaya","ghj@mail.ru");
-    app.getContactHelper().createContact(contact);
+    app.contact().create(contact);
     //TimeUnit.SECONDS.sleep(5);
-    List<ContactData> after = app.getContactHelper().getContactList();
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
 
