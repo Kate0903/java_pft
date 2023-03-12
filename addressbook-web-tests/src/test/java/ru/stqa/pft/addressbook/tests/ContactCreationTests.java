@@ -29,11 +29,28 @@ public class ContactCreationTests extends TestBase {
             .withEmail("ghj@mail.ru");
     app.contact().create(contact);
     //TimeUnit.SECONDS.sleep(5);
+    assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.contact().all();
-    assertThat(after.size(), equalTo(before.size() + 1));
+
 
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+
+  }
+  @Test
+  public void testBadContactCreation() throws Exception {
+    app.goTo().homePage();
+    Contacts before = app.contact().all();
+    app.goTo().addContactPage();
+    ContactData contact = new ContactData()
+            .withFirstname("kate'");
+    app.contact().create(contact);
+    //TimeUnit.SECONDS.sleep(5);
+    assertThat(app.contact().count(), equalTo(before.size()));
+    Contacts after = app.contact().all();
+
+
+    assertThat(after, equalTo(before));
 
   }
 }

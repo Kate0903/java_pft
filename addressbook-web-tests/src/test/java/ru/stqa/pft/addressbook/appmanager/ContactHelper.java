@@ -81,7 +81,7 @@ public class ContactHelper extends HelperBase{
     contactCache = null;
     closeDeleteAlert();
   }
-  public int getContactCount() {
+  public int count() {
     return wd.findElements(By.xpath("//input[@name='selected[]']")).size();
   }
 
