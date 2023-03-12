@@ -95,12 +95,16 @@ public class ContactHelper extends HelperBase{
       String firstName =cells.get(2).getText();
       String lastName = cells.get(1).getText();
       String allPhones = cells.get(5).getText();
+      String allEmails = cells.get(4).getText();
+      String address = cells.get(3).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       ContactData contact = new ContactData()
               .withId(id)
               .withFirstname(firstName)
               .withLastname(lastName)
-              .withAllPhones(allPhones);
+              .withAllPhones(allPhones)
+              .withAllEmails(allEmails)
+              .withAddress(address);
 
       contactCache.add(contact);
     }
@@ -121,6 +125,11 @@ public class ContactHelper extends HelperBase{
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
+    String email = wd.findElement(By.name("email")).getAttribute("value");
+    String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
+    String address = wd.findElement(By.name("address")).getText();
+
     wd.navigate().back();
     return new ContactData()
             .withId(contact.getId())
@@ -128,10 +137,14 @@ public class ContactHelper extends HelperBase{
             .withLastname(lastname)
             .withHomePhone(home)
             .withMobile(mobile)
-            .withWorkPhone(work);
+            .withWorkPhone(work)
+            .withEmail(email)
+            .withEmail2(email2)
+            .withEmail3(email3)
+            .withAddress(address);
+
 
   }
-
   private void initContactModificationById(int id) {
     WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
     WebElement row = checkbox.findElement(By.xpath("./../.."));
