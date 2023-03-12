@@ -7,9 +7,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import org.openqa.selenium.support.ui.Select;
+import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -37,11 +39,8 @@ public class ContactHelper extends HelperBase{
      Assert.assertFalse(isElementPresent(By.name("new_group")));
    }
   }
-
-
-
-  public void selectContact(int index) {
-    wd.findElements(By.xpath("//input[@name='selected[]']")).get(index).click();
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value ='" + id +"']")).click();
 
   }
 
@@ -49,8 +48,8 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void editSelectedContact(int index) {
-    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+  public void editSelectedContact(int id) {
+    wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
 
   }
 
@@ -67,25 +66,23 @@ public class ContactHelper extends HelperBase{
     addContactCreation();
     returnHomePage();
   }
-  public void modify(int index, ContactData contact) {
-    editSelectedContact(index);
+  public void modify(ContactData contact) {
+    editSelectedContact(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
     returnHomePage();
   }
-  public void delete(int index) {
-   selectContact(index);
-   deleteSelectedContacts();
-   closeDeleteAlert();
-
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
+    deleteSelectedContacts();
+    closeDeleteAlert();
   }
-
   public int getContactCount() {
     return wd.findElements(By.xpath("//input[@name='selected[]']")).size();
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Contacts all() {
+    Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[@name='entry']"));
     for (WebElement element : elements){
       List<WebElement>  cells = element.findElements(By.cssSelector("td"));
@@ -105,3 +102,4 @@ public class ContactHelper extends HelperBase{
     wait.until(webDriver -> webDriver.getCurrentUrl().contains("/addressbook/delete.php"));
   }
 }
+
