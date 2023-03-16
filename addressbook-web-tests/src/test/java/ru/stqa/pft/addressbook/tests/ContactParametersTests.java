@@ -11,12 +11,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactParametersTests extends TestBase{
   @Test
-  public void testContactPhones(){
+  public void testContactParameters(){
     app.goTo().homePage();
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-
     assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+    assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
+    assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
+
 
   }
 
@@ -31,23 +33,7 @@ public class ContactParametersTests extends TestBase{
     return phone.replaceAll("\\s","").replaceAll("[-()]","");
   }
 
-  @Test
-  public void testContactAddress(){
-    app.goTo().homePage();
-    ContactData contact = app.contact().all().iterator().next();
-    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-    assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
 
-  }
-
-  @Test
-  public void testContactMails(){
-    app.goTo().homePage();
-    ContactData contact = app.contact().all().iterator().next();
-    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-    assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
-
-  }
   private String mergeEmails(ContactData contact) {
     return Arrays.asList(contact.getEmail(),contact.getEmail2(), contact.getEmail3())
             .stream().filter((s) -> !s.equals(""))
