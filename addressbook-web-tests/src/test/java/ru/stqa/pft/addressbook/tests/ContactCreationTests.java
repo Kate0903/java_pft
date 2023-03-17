@@ -7,6 +7,7 @@ import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.io.File;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -20,13 +21,15 @@ public class ContactCreationTests extends TestBase {
   public void testContactCreation() throws Exception {
     app.goTo().homePage();
     Contacts before = app.contact().all();
+    File photo = new File("src/test/resources/3787591.png");
     app.goTo().addContactPage();
     ContactData contact = new ContactData()
             .withFirstname("kate")
             .withLastname("kap")
             .withMobile("89562")
             .withAddress("Tokorevskaya")
-            .withEmail("ghj@mail.ru");
+            .withEmail("ghj@mail.ru")
+            .withPhoto(photo);
     app.contact().create(contact);
     //TimeUnit.SECONDS.sleep(5);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
