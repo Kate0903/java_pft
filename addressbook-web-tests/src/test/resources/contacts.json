@@ -1,0 +1,23 @@
+[
+  {
+    "firstname": "kate 0",
+    "lastname": "kap 0",
+    "mobilePhone": "89562 0",
+    "address": "Tokorevskaya 0",
+    "email": "ghj@mail.ru 0"
+  },
+  {
+    "firstname": "kate 1",
+    "lastname": "kap 1",
+    "mobilePhone": "89562 1",
+    "address": "Tokorevskaya 1",
+    "email": "ghj@mail.ru 1"
+  },
+  {
+    "firstname": "kate 2",
+    "lastname": "kap 2",
+    "mobilePhone": "89562 2",
+    "address": "Tokorevskaya 2",
+    "email": "ghj@mail.ru 2"
+  }
+]
