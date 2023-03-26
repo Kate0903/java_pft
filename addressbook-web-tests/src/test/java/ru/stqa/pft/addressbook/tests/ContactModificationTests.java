@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.io.File;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -36,18 +38,21 @@ public class ContactModificationTests extends TestBase {
 
   @Test
   public void testContactModification() {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
+    File photo = new File("src/test/resources/3787591.png");
+    modifiedContact.withPhoto(photo);
     ContactData contact = new ContactData()
             .withId(modifiedContact.getId())
             .withFirstname("kate")
             .withLastname("kap")
             .withMobile("89562")
             .withAddress("Tokorevskaya")
-            .withEmail("ghj@mail.ru");
+            .withEmail("ghj@mail.ru")
+            .withPhoto(photo);
     app.contact().modify(contact);
     assertThat(app.contact().count(), equalTo(before.size()));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.without(modifiedContact).withAdded(contact)));
   }
 
