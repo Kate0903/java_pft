@@ -74,6 +74,11 @@ public class ContactHelper extends HelperBase{
     contactCache = null;
     returnHomePage();
   }
+  public void modifyGroup(ContactData contact) {
+    editSelectedContact(contact.getId());
+
+    returnHomePage();
+  }
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteSelectedContacts();
@@ -82,6 +87,9 @@ public class ContactHelper extends HelperBase{
   }
   public int count() {
     return wd.findElements(By.xpath("//input[@name='selected[]']")).size();
+  }
+  public void addContactIntoGroup() {
+    click(By.name("add"));
   }
 
   private Contacts contactCache = null;

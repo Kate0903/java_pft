@@ -29,8 +29,8 @@ public class GroupData {
   @Type(type = "text")
   private String header;
 
-  public Set<ContactData> getContacts() {
-    return contacts;
+  public Contacts getContacts() {
+    return new Contacts(contacts);
   }
 
   @ManyToMany(mappedBy = "groups")
