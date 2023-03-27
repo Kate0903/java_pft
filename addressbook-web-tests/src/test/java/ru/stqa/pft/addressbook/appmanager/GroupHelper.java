@@ -52,6 +52,9 @@ public class GroupHelper extends HelperBase {
   public void submitGroupModification() {
     click(By.name("update"));
   }
+  public void removeContactFromGroup() {
+    click(By.name("remove"));
+  }
 
   public void create(GroupData group) {
     initGroupCreation();
@@ -101,6 +104,14 @@ public class GroupHelper extends HelperBase {
 
   public List<org.openqa.selenium.WebElement> groupsOnAddressbookPage(){
     return wd.findElements(By.xpath("//select[@name='to_group']/option"));
+
+  }
+  public void groupsOnAddressbookPageFirst(int value){
+    wd.findElement(By.xpath("//select[@name='group']/option[@value=\"" + value+"\"]")).click();
+
+  }
+  public void chooseGroup(int id){
+    wd.findElement(By.xpath("//select[@name='to_group']/option[@value=\"" + id+"\"]")).click();
 
   }
 
