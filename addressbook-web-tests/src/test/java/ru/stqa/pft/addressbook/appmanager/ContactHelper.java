@@ -33,11 +33,20 @@ public class ContactHelper extends HelperBase{
    type (By.name("email"), contactData.getEmail());
    attach((By.name("photo")), contactData.getPhoto());
 
+
    if (creation){
      new Select(wd.findElement(By.name("new_group"))).selectByIndex(1);
    } else {
      Assert.assertFalse(isElementPresent(By.name("new_group")));
    }
+  }
+  public void fillContactFormBeforeMethod(ContactData contactData){
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("lastname"), contactData.getLastname());
+    type(By.name("mobile"), contactData.getMobilePhone());
+    type(By.name("address"), contactData.getAddress());
+    type(By.name("email"), contactData.getEmail());
+    attach((By.name("photo")), contactData.getPhoto());
   }
   public void selectContactById(int id) {
     wd.findElement(By.cssSelector("input[value ='" + id +"']")).click();
@@ -63,6 +72,12 @@ public class ContactHelper extends HelperBase{
 
   public void create(ContactData contact) {
     fillContactForm(contact, true);
+    addContactCreation();
+    contactCache = null;
+    returnHomePage();
+  }
+  public void createBeforeMethod(ContactData contact) {
+    fillContactFormBeforeMethod(contact);
     addContactCreation();
     contactCache = null;
     returnHomePage();
