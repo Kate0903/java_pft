@@ -1,5 +1,7 @@
 package ru.stqa.pft.mantis.tests;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -23,11 +25,16 @@ public class ChangePassword extends TestBase{
     String newPassword = String.format("password%s", now);
     app.changePassword().entering();
     app.changePassword().navigation();
-    //List<MailMessage> mailMessages = app.mail().waitForMAil(2,10000);
     app.changePassword().listUsers();
-    //String confirmationLink = findConfirmationLink(mailMessages,email);
-    //app.registration().finish(confirmationLink, password,user);
-    //assertTrue(app.newSession().login(user,password));
+    WebElement user = app.changePassword().listUsers().iterator().next();
+    String email =  app.changePassword().getEmail(user);
+    String username =  app.changePassword().getUserName(user);
+    app.changePassword().clickUser(user);
+    app.changePassword().button();
+    List<MailMessage> mailMessages = app.mail().waitForMAil(1,30000);
+    String confirmationLink = findConfirmationLink(mailMessages, email);
+    app.changePassword().finish(confirmationLink, newPassword, username);
+    assertTrue(app.newSession().login(username,newPassword));
   }
 
   private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
@@ -35,7 +42,6 @@ public class ChangePassword extends TestBase{
     VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
     return regex.getText(mailMessage.text);
   }
-
 
   @AfterMethod(alwaysRun = true)
   public void stopMailServer(){
