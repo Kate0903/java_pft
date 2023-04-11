@@ -7,7 +7,6 @@
       <module fileurl="file://$PROJECT_DIR$/java_pft.iml" filepath="$PROJECT_DIR$/java_pft.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/mantis-tests.main.iml" filepath="$PROJECT_DIR$/.idea/modules/mantis-tests.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/mantis-tests.test.iml" filepath="$PROJECT_DIR$/.idea/modules/mantis-tests.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/soap-sample.main.iml" filepath="$PROJECT_DIR$/.idea/modules/soap-sample.main.iml" />
     </modules>
   </component>
 </project>

@@ -3,12 +3,12 @@ buildscript{
         gradlePluginPortal()
     }
     dependencies {
-        classpath 'no.nils:wsdl2java:0.9'
+        classpath 'com.yupzip:wsdl2java:2.3.2'
     }
 }
 
 apply plugin: 'java'
-apply plugin: 'no.nils.wsdl2java'
+apply plugin: 'com.yupzip.wsdl2java'
 
 
 repositories {
@@ -22,6 +22,10 @@ dependencies {
 wsdl2java {
     wsdlDir = file("src/main/java")
     wsdlsToGenerate = [['$projectDir/src/main/resources/geoipservice.wsdl']]
+    generatedWsdlDir = file("D:\\dir\\java_pft\\soap-sample\\build\\generated\\")
+
 }
+
+
 
 
