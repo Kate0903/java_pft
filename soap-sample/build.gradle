@@ -16,16 +16,22 @@ repositories {
 }
 dependencies {
     implementation 'org.testng:testng:7.6.1'
-
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+    implementation "jakarta.xml.ws:jakarta.xml.ws-api:4.0.0"
+    implementation "com.sun.xml.ws:jaxws-rt:4.0.1"
 }
 
 wsdl2java {
-    wsdlDir = file("src/main/java")
-    wsdlsToGenerate = [['$projectDir/src/main/resources/geoipservice.wsdl']]
-    generatedWsdlDir = file("D:\\dir\\java_pft\\soap-sample\\build\\generated\\")
-
+    wsdlDir = file("src/main/resources")
+    wsdlsToGenerate = [
+            ["$projectDir/src/main/resources/geoipservice.wsdl"]
+    ]
 }
 
+test {
+    useTestNG()
+}
 
 
 
