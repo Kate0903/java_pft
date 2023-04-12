@@ -9,7 +9,13 @@ import static org.testng.Assert.assertEquals;
 public class GeoIpServiceTests {
   @Test
   public void testMyIp(){
-  String ipLocation = new GeoIPService().getGeoIPServiceSoap12().getIpLocation("216.58.209.206");
+  String ipLocation = new GeoIPService().getGeoIPServiceSoap12().getIpLocation(" 77.88.55.242");
   assertEquals(ipLocation, "<GeoIP><Country>US</Country><State>CA</State></GeoIP>");
+  }
+
+  @Test
+  public void testInvalidMyIp(){
+    String ipLocation = new GeoIPService().getGeoIPServiceSoap12().getIpLocation(" 77.88.55.sss");
+    assertEquals(ipLocation, "<GeoIP><Country>US</Country><State>CA</State></GeoIP>");
   }
 }
