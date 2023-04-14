@@ -32,16 +32,17 @@ public class TestBase {
     app.stop();
 
   }
-  public boolean isIssueOpen(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+  public boolean isIssueResolved(int issueId) throws MalformedURLException, ServiceException, RemoteException {
     MantisConnectPortType mc = new MantisConnectLocator()
-            .getMantisConnectPort(new URL("http://localhost/mantisbt-2.25.6/api/soap/mantisconnect.php"));
+            .getMantisConnectPort(new URL(app.getProperty("url.wsdl")));
     IssueData issue = mc.mc_issue_get("administrator", "root", BigInteger.valueOf(issueId));
+    System.out.println(issue.getStatus().getName());
     if((issue.getStatus().getName().equals("resolved")) || (issue.getStatus().getName().equals("closed"))){
       return true;
     } else return false;
   }
   public void skipIfNotFixed(int issueId) throws MalformedURLException, ServiceException, RemoteException {
-    if (!isIssueOpen(issueId)) {
+    if (!isIssueResolved(issueId)) {
       throw new SkipException("Ignored because of issue " + issueId);
     }
   }
