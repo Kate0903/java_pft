@@ -1,0 +1,6 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Mon Apr 17 19:54:36 MSK 2023","Mon Apr 17 19:54:37 MSK 2023","1316","","Suite1","","Suite1","testGroupCreation[GroupData{id='2147483647', name='test 0'}]","testGroupCreation[GroupData{id='2147483647', name='test 0'}]",""
+"passed","Mon Apr 17 19:54:38 MSK 2023","Mon Apr 17 19:54:40 MSK 2023","1277","","Suite1","","Suite1","testGroupCreation[GroupData{id='2147483647', name='test 2'}]","testGroupCreation[GroupData{id='2147483647', name='test 2'}]",""
+"passed","Mon Apr 17 19:54:37 MSK 2023","Mon Apr 17 19:54:38 MSK 2023","1251","","Suite1","","Suite1","testGroupCreation[GroupData{id='2147483647', name='test 1'}]","testGroupCreation[GroupData{id='2147483647', name='test 1'}]",""
+"passed","Mon Apr 17 19:54:34 MSK 2023","Mon Apr 17 19:54:35 MSK 2023","1436","","Suite1","","Suite1","testGroupModification","testGroupModification",""
+"passed","Mon Apr 17 19:54:40 MSK 2023","Mon Apr 17 19:54:40 MSK 2023","609","","Suite1","","Suite1","testGroupDeletion","testGroupDeletion",""
